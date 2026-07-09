@@ -1,0 +1,1003 @@
+<!-- F4 Pushkino landing for Tilda custom HTML block -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+#f4-tilda-site {
+  --cyan: #2bb8ba;
+  --yellow: #fbbd2f;
+  --navy: #1b2442;
+  --black: #000;
+  --ink: #05070b;
+  --panel: #10151d;
+  --panel-soft: #161d28;
+  --line: rgba(255, 255, 255, 0.14);
+  --text: #f4f7fb;
+  --muted: #9aa8b8;
+  --shadow: 0 26px 80px rgba(0, 0, 0, 0.46);
+}
+
+#f4-tilda-site, #f4-tilda-site * {
+  box-sizing: border-box;
+}
+
+#f4-tilda-site {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(43, 184, 186, 0.2), transparent 28rem),
+    radial-gradient(circle at 80% 12%, rgba(251, 189, 47, 0.14), transparent 22rem),
+    linear-gradient(180deg, #030507 0%, #080b12 48%, #010203 100%);
+  color: var(--text);
+  font-family: "Montserrat", Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+#f4-tilda-site::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 76%);
+}
+
+#f4-tilda-site img {
+  display: block;
+  max-width: 100%;
+}
+
+#f4-tilda-site a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#f4-tilda-site button,
+#f4-tilda-site input,
+#f4-tilda-site select {
+  font: inherit;
+}
+
+#f4-tilda-site .scanline {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.2;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+#f4-tilda-site .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px clamp(18px, 4vw, 56px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(1, 3, 7, 0.82);
+  backdrop-filter: blur(16px);
+}
+
+#f4-tilda-site .brand img {
+  width: 112px;
+  border: 0;
+  background: transparent;
+  filter: drop-shadow(0 0 12px rgba(43, 184, 186, 0.28));
+}
+
+#f4-tilda-site .nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+#f4-tilda-site .nav a {
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+#f4-tilda-site .nav a:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+#f4-tilda-site .hero {
+  position: relative;
+  min-height: calc(100vh - 74px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  align-items: end;
+  gap: 28px;
+  padding: clamp(34px, 5vw, 74px) clamp(18px, 5vw, 72px);
+  overflow: hidden;
+}
+
+#f4-tilda-site .hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+#f4-tilda-site .hero__media::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.68) 42%, rgba(0, 0, 0, 0.28) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1), #030507 98%);
+}
+
+#f4-tilda-site .hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.12) contrast(1.08);
+}
+
+#f4-tilda-site .hero__content {
+  max-width: 940px;
+}
+
+#f4-tilda-site .eyebrow {
+  margin: 0 0 14px;
+  color: var(--cyan);
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#f4-tilda-site h1,
+#f4-tilda-site h2,
+#f4-tilda-site h3,
+#f4-tilda-site p {
+  margin-top: 0;
+}
+
+#f4-tilda-site h1 {
+  max-width: 760px;
+  margin-bottom: 18px;
+  font-size: clamp(44px, 6.4vw, 86px);
+  line-height: 0.92;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 5px 5px 0 var(--navy), 8px 8px 0 rgba(251, 189, 47, 0.82);
+}
+
+#f4-tilda-site h2 {
+  margin-bottom: 18px;
+  font-size: clamp(30px, 4.5vw, 64px);
+  line-height: 0.96;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#f4-tilda-site h3 {
+  margin-bottom: 12px;
+  font-size: 21px;
+  line-height: 1.1;
+}
+
+#f4-tilda-site p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+#f4-tilda-site .hero__lead {
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(16px, 1.4vw, 20px);
+}
+
+#f4-tilda-site .hero__actions,
+#f4-tilda-site .hero__panel,
+#f4-tilda-site .palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#f4-tilda-site .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 14px 20px;
+  border: 2px solid var(--cyan);
+  box-shadow: 6px 6px 0 var(--navy);
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+#f4-tilda-site .button:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--navy);
+}
+
+#f4-tilda-site .button--primary {
+  border-color: var(--yellow);
+  background: var(--yellow);
+  color: #111;
+}
+
+#f4-tilda-site .button--ghost {
+  background: rgba(0, 0, 0, 0.42);
+  color: var(--cyan);
+}
+
+#f4-tilda-site .hero__panel {
+  align-self: end;
+  flex-direction: column;
+}
+
+#f4-tilda-site .hero__panel div {
+  padding: 18px;
+  border: 1px solid rgba(43, 184, 186, 0.34);
+  background: rgba(3, 7, 12, 0.78);
+  box-shadow: var(--shadow);
+}
+
+#f4-tilda-site .hero__panel strong {
+  display: block;
+  color: var(--yellow);
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+#f4-tilda-site .hero__panel span {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+#f4-tilda-site .ticker {
+  display: flex;
+  gap: 10px;
+  padding: 14px clamp(18px, 5vw, 72px);
+  overflow-x: auto;
+  border-block: 1px solid rgba(43, 184, 186, 0.3);
+  background: #020303;
+}
+
+#f4-tilda-site .ticker span {
+  flex: 0 0 auto;
+  padding: 9px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#f4-tilda-site .section {
+  padding: clamp(68px, 9vw, 128px) clamp(18px, 5vw, 72px);
+}
+
+#f4-tilda-site .intro {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(280px, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+#f4-tilda-site .intro p:last-child {
+  margin-top: 34px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+}
+
+#f4-tilda-site .section__head {
+  max-width: 960px;
+  margin-bottom: 34px;
+}
+
+#f4-tilda-site .advantage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#f4-tilda-site .advantage-grid article {
+  min-height: 310px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(43, 184, 186, 0.12), transparent 42%),
+    var(--panel);
+  box-shadow: 10px 10px 0 rgba(27, 36, 66, 0.8);
+}
+
+#f4-tilda-site .pixel-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 54px;
+  height: 44px;
+  margin-bottom: 22px;
+  border: 2px solid var(--cyan);
+  box-shadow: 5px 5px 0 var(--yellow);
+  color: var(--cyan);
+  font-weight: 900;
+}
+
+#f4-tilda-site .zones {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+  gap: 18px;
+}
+
+#f4-tilda-site .zone-card,
+#f4-tilda-site .zone-stack article,
+#f4-tilda-site .plan,
+#f4-tilda-site .brand-dna,
+#f4-tilda-site .final-cta {
+  border: 1px solid var(--line);
+  background: rgba(12, 16, 23, 0.86);
+  box-shadow: var(--shadow);
+}
+
+#f4-tilda-site .zone-card--large {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+#f4-tilda-site .zone-card--large img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+}
+
+#f4-tilda-site .zone-card--large div {
+  padding: clamp(24px, 4vw, 42px);
+}
+
+#f4-tilda-site .zone-stack {
+  display: grid;
+  gap: 18px;
+}
+
+#f4-tilda-site .zone-stack article {
+  overflow: hidden;
+}
+
+#f4-tilda-site .zone-stack img {
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+}
+
+#f4-tilda-site .zone-stack h3,
+#f4-tilda-site .zone-stack p {
+  padding-inline: 22px;
+}
+
+#f4-tilda-site .zone-stack h3 {
+  padding-top: 22px;
+}
+
+#f4-tilda-site .zone-stack p {
+  padding-bottom: 22px;
+}
+
+#f4-tilda-site .plan {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(320px, 1fr);
+  gap: clamp(24px, 4vw, 54px);
+  align-items: center;
+}
+
+#f4-tilda-site .plan__copy {
+  padding: clamp(24px, 4vw, 48px);
+}
+
+#f4-tilda-site .check-list {
+  display: grid;
+  gap: 14px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#f4-tilda-site .check-list li {
+  position: relative;
+  padding-left: 34px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.55;
+}
+
+#f4-tilda-site .check-list li::before {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  content: "";
+  background: var(--cyan);
+  box-shadow: 4px 4px 0 var(--yellow);
+}
+
+#f4-tilda-site .plan__image,
+#f4-tilda-site .gallery__grid button {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#f4-tilda-site .plan__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  object-fit: cover;
+}
+
+#f4-tilda-site .plan__image span,
+#f4-tilda-site .gallery__grid span {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 9px 12px;
+  background: var(--yellow);
+  color: #111;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#f4-tilda-site .gallery__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.9fr;
+  grid-auto-rows: minmax(240px, 1fr);
+  gap: 16px;
+}
+
+#f4-tilda-site .gallery__grid button:first-child {
+  grid-row: span 2;
+}
+
+#f4-tilda-site .gallery__grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 220ms ease, filter 220ms ease;
+}
+
+#f4-tilda-site .gallery__grid button:hover img {
+  transform: scale(1.04);
+  filter: saturate(1.18);
+}
+
+#f4-tilda-site .brand-dna,
+#f4-tilda-site .final-cta {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(280px, 0.8fr);
+  gap: 28px;
+  align-items: center;
+}
+
+#f4-tilda-site .brand-dna {
+  margin-inline: clamp(18px, 5vw, 72px);
+  padding: clamp(26px, 4vw, 48px);
+}
+
+#f4-tilda-site .palette {
+  justify-content: end;
+}
+
+#f4-tilda-site .palette span {
+  display: grid;
+  align-content: end;
+  width: min(150px, 42vw);
+  min-height: 190px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--swatch);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+
+#f4-tilda-site .palette span:nth-child(2) {
+  color: #111;
+  text-shadow: none;
+}
+
+#f4-tilda-site .final-cta {
+  margin: clamp(68px, 9vw, 128px) clamp(18px, 5vw, 72px);
+  padding: clamp(28px, 5vw, 58px);
+  background:
+    radial-gradient(circle at top right, rgba(43, 184, 186, 0.24), transparent 24rem),
+    #080b11;
+}
+
+#f4-tilda-site .booking-link-card {
+  display: grid;
+  gap: 16px;
+  padding: clamp(22px, 4vw, 36px);
+  border: 1px solid rgba(43, 184, 186, 0.36);
+  background:
+    linear-gradient(135deg, rgba(43, 184, 186, 0.16), transparent 55%),
+    rgba(0, 0, 0, 0.34);
+  box-shadow: 10px 10px 0 rgba(27, 36, 66, 0.72);
+}
+
+#f4-tilda-site .booking-link-card span {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+#f4-tilda-site .booking-link-card strong {
+  color: #fff;
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 0.95;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#f4-tilda-site .booking-link-card p {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+#f4-tilda-site .site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 28px clamp(18px, 5vw, 72px);
+  border-top: 1px solid var(--line);
+  background: #000;
+}
+
+#f4-tilda-site .site-footer img {
+  width: 116px;
+}
+
+#f4-tilda-site .site-footer p {
+  margin: 0;
+}
+
+#f4-tilda-site .site-footer a {
+  color: var(--cyan);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#f4-tilda-site .lightbox {
+  width: min(94vw, 1100px);
+  padding: 0;
+  border: 1px solid rgba(43, 184, 186, 0.6);
+  background: #000;
+  box-shadow: var(--shadow);
+}
+
+#f4-tilda-site .lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+}
+
+#f4-tilda-site .lightbox img {
+  width: 100%;
+  max-height: 86vh;
+  object-fit: contain;
+}
+
+#f4-tilda-site .lightbox__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--cyan);
+  background: #000;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 980px) {
+  #f4-tilda-site .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #f4-tilda-site .hero,
+  #f4-tilda-site .intro,
+  #f4-tilda-site .zones,
+  #f4-tilda-site .plan,
+  #f4-tilda-site .brand-dna,
+  #f4-tilda-site .final-cta {
+    grid-template-columns: 1fr;
+  }
+
+  #f4-tilda-site .hero {
+    min-height: auto;
+  }
+
+  #f4-tilda-site .hero__panel {
+    flex-direction: row;
+  }
+
+  #f4-tilda-site .advantage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #f4-tilda-site .palette {
+    justify-content: start;
+  }
+}
+
+@media (max-width: 680px) {
+  #f4-tilda-site .nav {
+    justify-content: flex-start;
+  }
+
+  #f4-tilda-site .nav a {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  #f4-tilda-site .brand img {
+    width: 112px;
+  }
+
+  #f4-tilda-site h1 {
+    font-size: 48px;
+    text-shadow: 3px 3px 0 var(--navy), 5px 5px 0 rgba(251, 189, 47, 0.82);
+  }
+
+  #f4-tilda-site .hero__actions,
+  #f4-tilda-site .hero__panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  #f4-tilda-site .button {
+    width: 100%;
+  }
+
+  #f4-tilda-site .advantage-grid,
+  #f4-tilda-site .gallery__grid {
+    grid-template-columns: 1fr;
+  }
+
+  #f4-tilda-site .gallery__grid button:first-child {
+    grid-row: auto;
+  }
+
+  #f4-tilda-site .gallery__grid {
+    grid-auto-rows: minmax(250px, 64vw);
+  }
+
+  #f4-tilda-site .plan__image img {
+    min-height: 320px;
+  }
+
+  #f4-tilda-site .palette span {
+    width: 100%;
+    min-height: 112px;
+  }
+}
+
+</style>
+<div id="f4-tilda-site">
+<div class="scanline" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#f4-top" aria-label="Ф4 Пушкино">
+        <img src="__ASSET_BASE_URL__/logo-f4.svg" alt="Ф4 компьютерный клуб" />
+      </a>
+      <nav class="nav" aria-label="Главная навигация">
+        <a href="#f4-advantages">Преимущества</a>
+        <a href="#f4-zones">Зоны</a>
+        <a href="#f4-plan">Планировка</a>
+        <a href="#f4-booking">Записаться</a>
+      </nav>
+    </header>
+
+    <main id="f4-top">
+      <section class="hero">
+        <div class="hero__media" aria-hidden="true">
+          <img src="__ASSET_BASE_URL__/viz-1.jpg" alt="" />
+        </div>
+        <div class="hero__content">
+          <p class="eyebrow">Пушкино · ул. Тургенева, 1</p>
+          <h1>Нажми F4. Закрой рутину. Открой игру.</h1>
+          <p class="hero__lead">
+            Ф4 - компьютерный клуб нового формата: киберспортивная энергия, темный
+            технологичный интерьер, удобные игровые места, lounge-зона и атмосфера,
+            в которой хочется собраться командой и остаться еще на один матч.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="https://f4club.ru/" target="_blank" rel="noopener">Забронировать место</a>
+            <a class="button button--ghost" href="#f4-gallery">Смотреть интерьер</a>
+          </div>
+        </div>
+        <aside class="hero__panel" aria-label="Ключевые особенности">
+          <div>
+            <strong>23</strong>
+            <span>игровых кресла в ведомости проекта</span>
+          </div>
+          <div>
+            <strong>5</strong>
+            <span>визуализаций готового интерьера</span>
+          </div>
+          <div>
+            <strong>24/7</strong>
+            <span>вайб для тренировок, каток и встреч с друзьями</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="ticker" aria-label="Фирменные преимущества">
+        <span>Киберспорт</span>
+        <span>Lounge</span>
+        <span>Бирюзовая подсветка</span>
+        <span>Черный сатин</span>
+        <span>Командные игры</span>
+        <span>Ретро-PC эстетика</span>
+      </section>
+
+      <section class="section intro">
+        <div>
+          <p class="eyebrow">Кто мы</p>
+          <h2>Ф4 - место, где игра становится событием.</h2>
+        </div>
+        <p>
+          По брендбуку Ф4 - не просто место для игр, а центр притяжения для тех,
+          кто одинаково любит командные победы, киберспорт и ламповые вечера с
+          друзьями. В Пушкино эта идея раскрыта через темный интерьер, пиксельные
+          логотипы, графитовые материалы, точечный свет и яркие бирюзово-желтые
+          акценты.
+        </p>
+      </section>
+
+      <section class="section advantages" id="f4-advantages">
+        <div class="section__head">
+          <p class="eyebrow">Почему сюда хочется возвращаться</p>
+          <h2>Преимущества, которые чувствуются сразу</h2>
+        </div>
+
+        <div class="advantage-grid">
+          <article>
+            <span class="pixel-icon">01</span>
+            <h3>Игровые ряды без хаоса</h3>
+            <p>
+              Рабочие станции собраны в понятную планировку: проходы не забиты,
+              посадка читается с первого взгляда, а подвесные полки для системных
+              блоков освобождают стол и визуально усиливают клубный стиль.
+            </p>
+          </article>
+          <article>
+            <span class="pixel-icon">02</span>
+            <h3>Интерьер в фирменной ДНК Ф4</h3>
+            <p>
+              Черный сатин, темный цементный пол, бирюзовая подсветка, желтые
+              пиксельные акценты и крупные знаки Ф4 работают как единая сцена.
+              Это не “комната с компьютерами”, а узнаваемый клуб.
+            </p>
+          </article>
+          <article>
+            <span class="pixel-icon">03</span>
+            <h3>Зона ожидания без скуки</h3>
+            <p>
+              Lounge с диванами, креслами, ТВ и консольным настроением дает
+              нормальный сценарий для друзей: подождать команду, отдохнуть между
+              матчами, посмотреть игру или просто зависнуть в атмосфере.
+            </p>
+          </article>
+          <article>
+            <span class="pixel-icon">04</span>
+            <h3>Ресепшен как точка входа</h3>
+            <p>
+              Админ-зона сделана яркой и понятной: светящаяся стойка, фирменный
+              знак, холодильник с напитками, навигационный свет и быстрый визуальный
+              контакт с гостем с первых секунд.
+            </p>
+          </article>
+          <article>
+            <span class="pixel-icon">05</span>
+            <h3>Инженерия под стабильную игру</h3>
+            <p>
+              В проект заложены электроснабжение, вентиляция, освещение и
+              слаботочные сети. Это база для стабильной работы оборудования,
+              комфортного воздуха и уверенного вечернего потока гостей.
+            </p>
+          </article>
+          <article>
+            <span class="pixel-icon">06</span>
+            <h3>Проект продуман до материалов</h3>
+            <p>
+              Ведомость фиксирует покрытия, краски, трековый свет, мебель,
+              розетки и сантехнику. Значит, будущий клуб не держится на одной
+              красивой картинке: у него есть рабочая проектная основа.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section zones" id="f4-zones">
+        <div class="zone-card zone-card--large">
+          <img src="__ASSET_BASE_URL__/viz-3.jpg" alt="Игровая зона Ф4 с рядами компьютеров" />
+          <div>
+            <p class="eyebrow">Главная арена</p>
+            <h2>Места для соло-игры, дуо и командных заходов</h2>
+            <p>
+              Длинные игровые ряды, широкие столешницы, подсветка рабочей зоны,
+              темные кресла и мониторы в одной линии создают правильный фокус:
+              игрок видит экран, команда рядом, лишнее не отвлекает.
+            </p>
+          </div>
+        </div>
+
+        <div class="zone-stack">
+          <article>
+            <img src="__ASSET_BASE_URL__/viz-2.jpg" alt="Lounge зона с диванами и игровым экраном" />
+            <h3>Lounge и консольный отдых</h3>
+            <p>Мягкая зона для компании, ожидания, турниров на большом экране и перерыва между катками.</p>
+          </article>
+          <article>
+            <img src="__ASSET_BASE_URL__/viz-5.jpg" alt="Коридор и входная зона компьютерного клуба Ф4" />
+            <h3>Навигация и вау-вход</h3>
+            <p>Фирменные знаки на стенах ведут гостя по клубу, а темный коридор работает как переход в игровой режим.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section plan" id="f4-plan">
+        <div class="plan__copy">
+          <p class="eyebrow">Планировка</p>
+          <h2>Пространство разделено так, чтобы гостю было удобно, а клубу - легко работать.</h2>
+          <ul class="check-list">
+            <li>Игровые места распределены по нескольким зонам, без ощущения тесного зала.</li>
+            <li>Есть отдельная lounge-зона с мягкой мебелью и экраном.</li>
+            <li>Админ-стойка, напитки и входной сценарий находятся в логичной точке потока.</li>
+            <li>Вспомогательные помещения, санузлы и инженерия заложены в проекте заранее.</li>
+          </ul>
+        </div>
+        <button class="plan__image" type="button" data-lightbox="__ASSET_BASE_URL__/plan-furniture.jpg">
+          <img src="__ASSET_BASE_URL__/plan-furniture.jpg" alt="План расстановки мебели клуба Ф4 Пушкино" />
+          <span>Открыть план</span>
+        </button>
+      </section>
+
+      <section class="section gallery" id="f4-gallery">
+        <div class="section__head">
+          <p class="eyebrow">Интерьер</p>
+          <h2>Темно, ярко, технологично</h2>
+        </div>
+        <div class="gallery__grid">
+          <button type="button" data-lightbox="__ASSET_BASE_URL__/viz-1.jpg">
+            <img src="__ASSET_BASE_URL__/viz-1.jpg" alt="Ресепшен Ф4 с бирюзовой подсветкой" />
+            <span>Ресепшен</span>
+          </button>
+          <button type="button" data-lightbox="__ASSET_BASE_URL__/viz-4.jpg">
+            <img src="__ASSET_BASE_URL__/viz-4.jpg" alt="Игровые места с подвесными полками для системных блоков" />
+            <span>PC-зона</span>
+          </button>
+          <button type="button" data-lightbox="__ASSET_BASE_URL__/viz-2.jpg">
+            <img src="__ASSET_BASE_URL__/viz-2.jpg" alt="Зона отдыха Ф4" />
+            <span>Lounge</span>
+          </button>
+          <button type="button" data-lightbox="__ASSET_BASE_URL__/viz-5.jpg">
+            <img src="__ASSET_BASE_URL__/viz-5.jpg" alt="Коридор с логотипом Ф4" />
+            <span>Навигация</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section brand-dna">
+        <div>
+          <p class="eyebrow">Фирменный стиль</p>
+          <h2>Палитра из брендбука, но в живом пространстве.</h2>
+          <p>
+            Бирюзовый отвечает за энергию экрана и подсветки, желтый - за пиксельный
+            игровой акцент, темно-синий и черный собирают сцену в плотный
+            киберспортивный фон.
+          </p>
+        </div>
+        <div class="palette" aria-label="Цветовая палитра">
+          <span style="--swatch: #2bb8ba">#2BB8BA</span>
+          <span style="--swatch: #fbbd2f">#FBBD2F</span>
+          <span style="--swatch: #1b2442">#1B2442</span>
+          <span style="--swatch: #000000">#000000</span>
+        </div>
+      </section>
+
+      <section class="section final-cta" id="f4-booking">
+        <div>
+          <p class="eyebrow">Готов к катке?</p>
+          <h2>Ф4 Пушкино ждет команды, дуо и тех, кто пришел закрыть день красивой победой.</h2>
+          <p>
+            Бронь, турниры, дни рождения и командные тренировки оформляются на
+            отдельной странице. Здесь оставляем яркий вход в сценарий, а все
+            детали и подтверждение пользователь завершает уже на стороне сервиса.
+          </p>
+        </div>
+        <div class="booking-link-card">
+          <span>online booking</span>
+          <strong>Перейти к оформлению</strong>
+          <p>Откроется внешний сайт бронирования, где можно выбрать формат визита и завершить оформление.</p>
+          <a class="button button--primary" href="https://f4club.ru/" target="_blank" rel="noopener">
+            Оформить бронь
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img src="__ASSET_BASE_URL__/logo-f4.svg" alt="Ф4 компьютерный клуб" />
+      <p>Ф4 Пушкино · Московская область, Пушкино, ул. Тургенева, 1</p>
+      <a href="#f4-top">Наверх</a>
+    </footer>
+
+    <dialog class="lightbox" aria-label="Просмотр изображения">
+      <button class="lightbox__close" type="button" aria-label="Закрыть">×</button>
+      <img alt="" />
+    </dialog>
+
+    <script src="script.js"></script>
+</div>
+<script>
+(() => {
+  const root = document.getElementById("f4-tilda-site");
+  if (!root) return;
+  const dialog = root.querySelector(".lightbox");
+  const dialogImage = dialog?.querySelector("img");
+  const closeButton = dialog?.querySelector(".lightbox__close");
+
+  root.querySelectorAll("[data-lightbox]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!dialog || !dialogImage) return;
+      dialogImage.src = button.dataset.lightbox || "";
+      dialogImage.alt = button.querySelector("img")?.alt || "Изображение Ф4";
+      if (typeof dialog.showModal === "function") {
+        dialog.showModal();
+      } else {
+        dialog.setAttribute("open", "");
+      }
+    });
+  });
+
+  closeButton?.addEventListener("click", () => dialog?.close ? dialog.close() : dialog?.removeAttribute("open"));
+
+  dialog?.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close ? dialog.close() : dialog.removeAttribute("open");
+    }
+  });
+})();
+</script>
