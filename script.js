@@ -5,25 +5,46 @@ const motionAllowed = !window.matchMedia("(prefers-reduced-motion: reduce)").mat
 if (motionAllowed && intro && pixelWrap) {
   document.body.classList.add("intro-lock");
 
-  const colors = ["#2bb8ba", "#fbbd2f", "#ffffff", "#1b2442"];
-  const pixelCount = 70;
+  const colors = [
+    { fill: "#2bb8ba", glow: "rgba(43, 184, 186, 0.34)" },
+    { fill: "#fbbd2f", glow: "rgba(251, 189, 47, 0.3)" },
+    { fill: "#ffffff", glow: "rgba(255, 255, 255, 0.22)" },
+    { fill: "#1b2442", glow: "rgba(27, 36, 66, 0.38)" },
+  ];
+  const pixelCount = 88;
+  const columns = 11;
 
   for (let index = 0; index < pixelCount; index += 1) {
     const pixel = document.createElement("span");
     const angle = (Math.PI * 2 * index) / pixelCount;
-    const orbit = 150 + (index % 10) * 12;
-    const targetX = -154 + (index % 10) * 34;
-    const targetY = -94 + Math.floor(index / 10) * 29;
+    const orbit = 120 + (index % 8) * 18;
+    const column = index % columns;
+    const row = Math.floor(index / columns);
+    const targetX = -164 + column * 33;
+    const targetY = -98 + row * 26;
+    const wave = index % 2 === 0 ? -1 : 1;
+    const midX = targetX + wave * (28 + (index % 4) * 8);
+    const midY = targetY - 26 + (index % 5) * 10;
+    const color = colors[index % colors.length];
 
     pixel.style.setProperty("--from-x", `${Math.cos(angle) * orbit}px`);
     pixel.style.setProperty("--from-y", `${Math.sin(angle) * orbit}px`);
+    pixel.style.setProperty("--mid-x", `${midX}px`);
+    pixel.style.setProperty("--mid-y", `${midY}px`);
     pixel.style.setProperty("--to-x", `${targetX}px`);
     pixel.style.setProperty("--to-y", `${targetY}px`);
-    pixel.style.setProperty("--delay", `${80 + index * 12}ms`);
-    pixel.style.setProperty("--size", `${8 + (index % 3) * 3}px`);
-    pixel.style.setProperty("--color", colors[index % colors.length]);
+    pixel.style.setProperty("--delay", `${60 + (index % columns) * 22 + row * 42}ms`);
+    pixel.style.setProperty("--size", `${6 + (index % 4) * 2}px`);
+    pixel.style.setProperty("--rotate", `${wave * (18 + (index % 6) * 6)}deg`);
+    pixel.style.setProperty("--shadow-step", `${2 + (index % 2) * 2}px`);
+    pixel.style.setProperty("--color", color.fill);
+    pixel.style.setProperty("--glow", color.glow);
     pixelWrap.append(pixel);
   }
+
+  window.setTimeout(() => {
+    intro.classList.add("logo-intro--built");
+  }, 1640);
 
   window.setTimeout(() => {
     const introLogo = intro.querySelector(".logo-intro__logo");
