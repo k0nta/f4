@@ -1,5 +1,4 @@
-<!-- F4 Pushkino landing for Tilda custom HTML block -->
-<meta charset="UTF-8">
+<!-- F4 Tilda custom code. Replace __ASSET_BASE_URL__ with the uploaded Tilda asset folder URL. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
@@ -16,16 +15,11 @@
   --text: #f4f7fb;
   --muted: #9aa8b8;
   --shadow: 0 26px 80px rgba(0, 0, 0, 0.46);
-}
-
-#f4-tilda-site, #f4-tilda-site * {
+}#f4-tilda-site * {
   box-sizing: border-box;
-}
-
-#f4-tilda-site {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
+}#f4-tilda-site {
+  scroll-behavior: smooth;
+}#f4-tilda-site {
   margin: 0;
   background:
     radial-gradient(circle at 20% 0%, rgba(43, 184, 186, 0.2), transparent 28rem),
@@ -34,38 +28,98 @@
   color: var(--text);
   font-family: "Montserrat", Arial, sans-serif;
   letter-spacing: 0;
-}
-
-#f4-tilda-site::before {
-  position: absolute;
+}#f4-tilda-site.intro-lock,
+#f4-tilda-site.intro-lock {
+  overflow: hidden;
+}#f4-tilda-site::before {
+  position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   content: "";
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 44px 44px;
   mask-image: linear-gradient(180deg, #000 0%, transparent 76%);
-}
-
-#f4-tilda-site img {
+}#f4-tilda-site .logo-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, rgba(43, 184, 186, 0.2), transparent 24rem),
+    #030507;
+  animation: intro-out 640ms ease 3100ms forwards;
+}#f4-tilda-site .logo-intro__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(480px, 82vw);
+  min-height: 330px;
+}#f4-tilda-site .logo-intro__stage::before,
+#f4-tilda-site .logo-intro__stage::after {
+  position: absolute;
+  content: "";
+  border: 1px solid rgba(43, 184, 186, 0.24);
+  pointer-events: none;
+}#f4-tilda-site .logo-intro__stage::before {
+  inset: 42px 18px;
+  animation: intro-frame 1300ms steps(5, end) 120ms both;
+}#f4-tilda-site .logo-intro__stage::after {
+  width: 82%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(251, 189, 47, 0.82), transparent);
+  animation: intro-scan 1600ms ease-in-out 180ms both;
+}#f4-tilda-site .logo-intro__logo {
+  width: min(330px, 72vw);
+  opacity: 0;
+  filter: blur(8px) saturate(1.35);
+  image-rendering: pixelated;
+  transform: scale(0.76);
+  animation: logo-build 1200ms steps(8, end) 360ms forwards;
+}#f4-tilda-site .logo-intro--dock .logo-intro__logo {
+  animation: logo-dock 980ms cubic-bezier(0.2, 0.9, 0.22, 1) forwards;
+}#f4-tilda-site .logo-intro__pixels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}#f4-tilda-site .logo-intro__pixels span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--size);
+  height: var(--size);
+  background: var(--color);
+  box-shadow: 4px 4px 0 rgba(27, 36, 66, 0.86);
+  transform: translate(var(--from-x), var(--from-y)) scale(0.65);
+  opacity: 0;
+  animation: pixel-join 980ms steps(5, end) var(--delay) forwards;
+}#f4-tilda-site .logo-intro__stage span {
+  position: absolute;
+  bottom: 12px;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  animation: intro-text 1200ms ease 300ms forwards;
+}#f4-tilda-site .logo-intro--dock .logo-intro__stage span,
+#f4-tilda-site .logo-intro--dock .logo-intro__pixels {
+  opacity: 0;
+  transition: opacity 240ms ease;
+}#f4-tilda-site img {
   display: block;
   max-width: 100%;
-}
-
-#f4-tilda-site a {
+}#f4-tilda-site a {
   color: inherit;
   text-decoration: none;
-}
-
-#f4-tilda-site button,
+}#f4-tilda-site button,
 #f4-tilda-site input,
 #f4-tilda-site select {
   font: inherit;
-}
-
-#f4-tilda-site .scanline {
-  position: absolute;
+}#f4-tilda-site .scanline {
+  position: fixed;
   inset: 0;
   z-index: 10;
   pointer-events: none;
@@ -77,9 +131,7 @@
     transparent 1px,
     transparent 4px
   );
-}
-
-#f4-tilda-site .site-header {
+}#f4-tilda-site .site-header {
   position: sticky;
   top: 0;
   z-index: 6;
@@ -91,89 +143,66 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(1, 3, 7, 0.82);
   backdrop-filter: blur(16px);
-}
-
-#f4-tilda-site .brand img {
+}#f4-tilda-site .brand img {
   width: 112px;
   border: 0;
   background: transparent;
   filter: drop-shadow(0 0 12px rgba(43, 184, 186, 0.28));
-}
-
-#f4-tilda-site .nav {
+}#f4-tilda-site .nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 8px;
-}
-
-#f4-tilda-site .nav a {
+}#f4-tilda-site .nav a {
   padding: 10px 14px;
   border: 1px solid transparent;
   color: rgba(255, 255, 255, 0.82);
   font-size: 13px;
   font-weight: 800;
   text-transform: uppercase;
-}
-
-#f4-tilda-site .nav a:hover {
+}#f4-tilda-site .nav a:hover {
   border-color: var(--cyan);
   color: var(--cyan);
-}
-
-#f4-tilda-site .hero {
+}#f4-tilda-site .hero {
   position: relative;
-  min-height: calc(100vh - 74px);
+  min-height: clamp(620px, calc(100vh - 74px), 820px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-  align-items: end;
+  align-items: center;
   gap: 28px;
-  padding: clamp(34px, 5vw, 74px) clamp(18px, 5vw, 72px);
+  padding: clamp(28px, 4vw, 60px) clamp(18px, 5vw, 72px);
   overflow: hidden;
-}
-
-#f4-tilda-site .hero__media {
+}#f4-tilda-site .hero__media {
   position: absolute;
   inset: 0;
   z-index: -2;
-}
-
-#f4-tilda-site .hero__media::after {
+}#f4-tilda-site .hero__media::after {
   position: absolute;
   inset: 0;
   content: "";
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.68) 42%, rgba(0, 0, 0, 0.28) 100%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.1), #030507 98%);
-}
-
-#f4-tilda-site .hero__media img {
+}#f4-tilda-site .hero__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: saturate(1.12) contrast(1.08);
-}
-
-#f4-tilda-site .hero__content {
+  animation: hero-drift 18s ease-in-out infinite alternate;
+}#f4-tilda-site .hero__content {
   max-width: 940px;
-}
-
-#f4-tilda-site .eyebrow {
+}#f4-tilda-site .eyebrow {
   margin: 0 0 14px;
   color: var(--cyan);
   font-size: 13px;
   font-weight: 900;
   text-transform: uppercase;
-}
-
-#f4-tilda-site h1,
+}#f4-tilda-site h1,
 #f4-tilda-site h2,
 #f4-tilda-site h3,
 #f4-tilda-site p {
   margin-top: 0;
-}
-
-#f4-tilda-site h1 {
+}#f4-tilda-site h1 {
   max-width: 760px;
   margin-bottom: 18px;
   font-size: clamp(44px, 6.4vw, 86px);
@@ -181,41 +210,29 @@
   font-weight: 900;
   text-transform: uppercase;
   text-shadow: 5px 5px 0 var(--navy), 8px 8px 0 rgba(251, 189, 47, 0.82);
-}
-
-#f4-tilda-site h2 {
+}#f4-tilda-site h2 {
   margin-bottom: 18px;
   font-size: clamp(30px, 4.5vw, 64px);
   line-height: 0.96;
   font-weight: 900;
   text-transform: uppercase;
-}
-
-#f4-tilda-site h3 {
+}#f4-tilda-site h3 {
   margin-bottom: 12px;
   font-size: 21px;
   line-height: 1.1;
-}
-
-#f4-tilda-site p {
+}#f4-tilda-site p {
   color: var(--muted);
   line-height: 1.65;
-}
-
-#f4-tilda-site .hero__lead {
+}#f4-tilda-site .hero__lead {
   max-width: 720px;
   color: rgba(255, 255, 255, 0.84);
   font-size: clamp(16px, 1.4vw, 20px);
-}
-
-#f4-tilda-site .hero__actions,
+}#f4-tilda-site .hero__actions,
 #f4-tilda-site .hero__panel {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-}
-
-#f4-tilda-site .button {
+}#f4-tilda-site .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -227,100 +244,60 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-}
-
-#f4-tilda-site .button:hover {
+}#f4-tilda-site .button:hover {
   transform: translate(3px, 3px);
   box-shadow: 3px 3px 0 var(--navy);
-}
-
-#f4-tilda-site .button--primary {
+}#f4-tilda-site .button--primary {
   border-color: var(--yellow);
   background: var(--yellow);
   color: #111;
-}
-
-#f4-tilda-site .button--ghost {
+}#f4-tilda-site .button--ghost {
   background: rgba(0, 0, 0, 0.42);
   color: var(--cyan);
-}
-
-#f4-tilda-site .hero__panel {
+}#f4-tilda-site .hero__panel {
   align-self: end;
   flex-direction: column;
-}
-
-#f4-tilda-site .hero__panel div {
+}#f4-tilda-site .hero__panel div {
   padding: 18px;
   border: 1px solid rgba(43, 184, 186, 0.34);
   background: rgba(3, 7, 12, 0.78);
   box-shadow: var(--shadow);
-}
-
-#f4-tilda-site .hero__panel strong {
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+}#f4-tilda-site .hero__panel div:hover {
+  transform: translateX(-6px);
+  border-color: rgba(251, 189, 47, 0.58);
+  background: rgba(8, 14, 22, 0.9);
+}#f4-tilda-site .hero__panel strong {
   display: block;
   color: var(--yellow);
   font-size: 42px;
   line-height: 1;
   font-weight: 900;
-}
-
-#f4-tilda-site .hero__panel span {
+}#f4-tilda-site .hero__panel span {
   display: block;
   margin-top: 8px;
   color: rgba(255, 255, 255, 0.74);
   font-size: 13px;
   line-height: 1.45;
-}
-
-#f4-tilda-site .ticker {
-  display: flex;
-  gap: 10px;
-  padding: 14px clamp(18px, 5vw, 72px);
-  overflow-x: auto;
-  border-block: 1px solid rgba(43, 184, 186, 0.3);
-  background: #020303;
-}
-
-#f4-tilda-site .ticker span {
-  flex: 0 0 auto;
-  padding: 9px 13px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-#f4-tilda-site .section {
+}#f4-tilda-site .section {
   padding: clamp(68px, 9vw, 128px) clamp(18px, 5vw, 72px);
-}
-
-#f4-tilda-site .intro {
+}#f4-tilda-site .intro {
   display: grid;
   grid-template-columns: minmax(260px, 0.8fr) minmax(280px, 1fr);
   gap: clamp(28px, 5vw, 72px);
   align-items: start;
-}
-
-#f4-tilda-site .intro p:last-child {
+}#f4-tilda-site .intro p:last-child {
   margin-top: 34px;
   color: rgba(255, 255, 255, 0.8);
   font-size: 20px;
-}
-
-#f4-tilda-site .section__head {
+}#f4-tilda-site .section__head {
   max-width: 960px;
   margin-bottom: 34px;
-}
-
-#f4-tilda-site .advantage-grid {
+}#f4-tilda-site .advantage-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-}
-
-#f4-tilda-site .advantage-grid article {
+}#f4-tilda-site .advantage-grid article {
   min-height: 310px;
   padding: 24px;
   border: 1px solid var(--line);
@@ -328,9 +305,12 @@
     linear-gradient(135deg, rgba(43, 184, 186, 0.12), transparent 42%),
     var(--panel);
   box-shadow: 10px 10px 0 rgba(27, 36, 66, 0.8);
-}
-
-#f4-tilda-site .pixel-icon {
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}#f4-tilda-site .advantage-grid article:hover {
+  transform: translateY(-7px);
+  border-color: rgba(43, 184, 186, 0.5);
+  box-shadow: 10px 14px 0 rgba(27, 36, 66, 0.8), 0 0 34px rgba(43, 184, 186, 0.12);
+}#f4-tilda-site .pixel-icon {
   display: inline-grid;
   place-items: center;
   width: 54px;
@@ -340,97 +320,75 @@
   box-shadow: 5px 5px 0 var(--yellow);
   color: var(--cyan);
   font-weight: 900;
-}
-
-#f4-tilda-site .zones {
+}#f4-tilda-site .zones {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
   gap: 18px;
-}
-
-#f4-tilda-site .zone-card,
+}#f4-tilda-site .zone-card,
 #f4-tilda-site .zone-stack article,
 #f4-tilda-site .plan,
 #f4-tilda-site .final-cta {
   border: 1px solid var(--line);
   background: rgba(12, 16, 23, 0.86);
   box-shadow: var(--shadow);
-}
-
-#f4-tilda-site .zone-card--large {
+}#f4-tilda-site .zone-card,
+#f4-tilda-site .zone-stack article,
+#f4-tilda-site .plan,
+#f4-tilda-site .final-cta,
+#f4-tilda-site .gallery__grid button {
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}#f4-tilda-site .zone-card:hover,
+#f4-tilda-site .zone-stack article:hover,
+#f4-tilda-site .plan:hover,
+#f4-tilda-site .final-cta:hover {
+  border-color: rgba(43, 184, 186, 0.42);
+  box-shadow: var(--shadow), 0 0 36px rgba(43, 184, 186, 0.1);
+}#f4-tilda-site .zone-card--large {
   display: grid;
   grid-template-rows: auto 1fr;
-}
-
-#f4-tilda-site .zone-card--large img {
+}#f4-tilda-site .zone-card--large img {
   width: 100%;
   aspect-ratio: 16 / 11;
   object-fit: cover;
-}
-
-#f4-tilda-site .zone-card--large div {
+}#f4-tilda-site .zone-card--large div {
   padding: clamp(24px, 4vw, 42px);
-}
-
-#f4-tilda-site .zone-stack {
+}#f4-tilda-site .zone-stack {
   display: grid;
   gap: 18px;
-}
-
-#f4-tilda-site .zone-stack article {
+}#f4-tilda-site .zone-stack article {
   overflow: hidden;
-}
-
-#f4-tilda-site .zone-stack img {
+}#f4-tilda-site .zone-stack img {
   width: 100%;
   aspect-ratio: 16 / 8;
   object-fit: cover;
-}
-
-#f4-tilda-site .zone-stack h3,
+}#f4-tilda-site .zone-stack h3,
 #f4-tilda-site .zone-stack p {
   padding-inline: 22px;
-}
-
-#f4-tilda-site .zone-stack h3 {
+}#f4-tilda-site .zone-stack h3 {
   padding-top: 22px;
-}
-
-#f4-tilda-site .zone-stack p {
+}#f4-tilda-site .zone-stack p {
   padding-bottom: 22px;
-}
-
-#f4-tilda-site .plan {
+}#f4-tilda-site .plan {
   display: grid;
   grid-template-columns: minmax(280px, 0.82fr) minmax(320px, 1fr);
   gap: clamp(24px, 4vw, 54px);
   align-items: center;
-}
-
-#f4-tilda-site .plan__copy {
+}#f4-tilda-site .plan__copy {
   padding: clamp(24px, 4vw, 48px);
-}
-
-#f4-tilda-site .plan__copy h2 {
+}#f4-tilda-site .plan__copy h2 {
   font-size: clamp(30px, 3.8vw, 52px);
-}
-
-#f4-tilda-site .check-list {
+}#f4-tilda-site .check-list {
   display: grid;
   gap: 14px;
   margin: 26px 0 0;
   padding: 0;
   list-style: none;
-}
-
-#f4-tilda-site .check-list li {
+}#f4-tilda-site .check-list li {
   position: relative;
   padding-left: 34px;
   color: rgba(255, 255, 255, 0.82);
   line-height: 1.55;
-}
-
-#f4-tilda-site .check-list li::before {
+}#f4-tilda-site .check-list li::before {
   position: absolute;
   top: 4px;
   left: 0;
@@ -439,9 +397,7 @@
   content: "";
   background: var(--cyan);
   box-shadow: 4px 4px 0 var(--yellow);
-}
-
-#f4-tilda-site .plan__image,
+}#f4-tilda-site .plan__image,
 #f4-tilda-site .gallery__grid button {
   position: relative;
   display: block;
@@ -452,17 +408,13 @@
   color: #fff;
   cursor: pointer;
   overflow: hidden;
-}
-
-#f4-tilda-site .plan__image img {
+}#f4-tilda-site .plan__image img {
   width: 100%;
   height: 100%;
   min-height: 430px;
   background: #fff;
   object-fit: contain;
-}
-
-#f4-tilda-site .plan__image span,
+}#f4-tilda-site .plan__image span,
 #f4-tilda-site .gallery__grid span {
   position: absolute;
   right: 16px;
@@ -473,47 +425,172 @@
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
-}
-
-#f4-tilda-site .gallery__grid {
+}#f4-tilda-site .gallery__grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr 0.9fr;
   grid-auto-rows: minmax(240px, 1fr);
   gap: 16px;
-}
-
-#f4-tilda-site .gallery__grid button:first-child {
+}#f4-tilda-site .gallery__grid button:first-child {
   grid-row: span 2;
-}
-
-#f4-tilda-site .gallery__grid img {
+}#f4-tilda-site .gallery__grid img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 220ms ease, filter 220ms ease;
-}
-
-#f4-tilda-site .gallery__grid button:hover img {
+}#f4-tilda-site .gallery__grid button:hover img {
   transform: scale(1.04);
   filter: saturate(1.18);
+}#f4-tilda-site.has-motion .section,
+#f4-tilda-site.has-motion .advantage-grid article,
+#f4-tilda-site.has-motion .zone-card,
+#f4-tilda-site.has-motion .zone-stack article,
+#f4-tilda-site.has-motion .plan,
+#f4-tilda-site.has-motion .gallery__grid button,
+#f4-tilda-site.has-motion .final-cta {
+  opacity: 0;
+  transform: translateY(24px);
+}#f4-tilda-site.has-motion .section.is-visible,
+#f4-tilda-site.has-motion .advantage-grid article.is-visible,
+#f4-tilda-site.has-motion .zone-card.is-visible,
+#f4-tilda-site.has-motion .zone-stack article.is-visible,
+#f4-tilda-site.has-motion .plan.is-visible,
+#f4-tilda-site.has-motion .gallery__grid button.is-visible,
+#f4-tilda-site.has-motion .final-cta.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}#f4-tilda-site.has-motion .advantage-grid article:nth-child(2),
+#f4-tilda-site.has-motion .gallery__grid button:nth-child(2) {
+  transition-delay: 80ms;
+}#f4-tilda-site.has-motion .advantage-grid article:nth-child(3),
+#f4-tilda-site.has-motion .gallery__grid button:nth-child(3) {
+  transition-delay: 160ms;
+}#f4-tilda-site.has-motion .advantage-grid article:nth-child(4),
+#f4-tilda-site.has-motion .gallery__grid button:nth-child(4) {
+  transition-delay: 240ms;
 }
 
-#f4-tilda-site .final-cta {
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes logo-build {
+  0% {
+    opacity: 0;
+    filter: blur(10px) saturate(1.5);
+    clip-path: inset(45% 45% 45% 45%);
+    transform: scale(0.76);
+  }
+  55% {
+    opacity: 1;
+    clip-path: inset(12% 16% 18% 14%);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0) saturate(1);
+    clip-path: inset(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes logo-dock {
+  0% {
+    opacity: 1;
+    filter: blur(0) saturate(1);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  28% {
+    filter: blur(0) saturate(1.24) drop-shadow(0 0 18px rgba(43, 184, 186, 0.48));
+    transform: translate3d(0, -14px, 0) scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0) saturate(1) drop-shadow(0 0 12px rgba(43, 184, 186, 0.28));
+    transform: translate3d(var(--dock-x, 0), var(--dock-y, 0), 0) scale(var(--dock-scale, 0.34));
+  }
+}
+
+@keyframes intro-frame {
+  0% {
+    opacity: 0;
+    clip-path: inset(50% 50% 50% 50%);
+    transform: scale(0.92);
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.82;
+    clip-path: inset(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes intro-scan {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px) scaleX(0.42);
+  }
+  22%,
+  76% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(112px) scaleX(1);
+  }
+}
+
+@keyframes pixel-join {
+  0% {
+    opacity: 0;
+    transform: translate(var(--from-x), var(--from-y)) scale(0.65);
+  }
+  28% {
+    opacity: 1;
+  }
+  78% {
+    opacity: 1;
+    transform: translate(var(--to-x), var(--to-y)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--to-x), var(--to-y)) scale(0.35);
+  }
+}
+
+@keyframes intro-text {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-drift {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(18px, -10px, 0);
+  }
+}#f4-tilda-site .final-cta {
   display: grid;
   grid-template-columns: minmax(280px, 1fr) minmax(280px, 0.8fr);
   gap: 28px;
   align-items: center;
-}
-
-#f4-tilda-site .final-cta {
+}#f4-tilda-site .final-cta {
   margin: clamp(68px, 9vw, 128px) clamp(18px, 5vw, 72px);
   padding: clamp(28px, 5vw, 58px);
   background:
     radial-gradient(circle at top right, rgba(43, 184, 186, 0.24), transparent 24rem),
     #080b11;
-}
-
-#f4-tilda-site .booking-link-card {
+}#f4-tilda-site .booking-link-card {
   display: grid;
   gap: 16px;
   padding: clamp(22px, 4vw, 36px);
@@ -522,30 +599,22 @@
     linear-gradient(135deg, rgba(43, 184, 186, 0.16), transparent 55%),
     rgba(0, 0, 0, 0.34);
   box-shadow: 10px 10px 0 rgba(27, 36, 66, 0.72);
-}
-
-#f4-tilda-site .booking-link-card span {
+}#f4-tilda-site .booking-link-card span {
   margin: 0;
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
   color: var(--cyan);
-}
-
-#f4-tilda-site .booking-link-card strong {
+}#f4-tilda-site .booking-link-card strong {
   color: #fff;
   font-size: clamp(28px, 4vw, 46px);
   line-height: 0.95;
   font-weight: 900;
   text-transform: uppercase;
-}
-
-#f4-tilda-site .booking-link-card p {
+}#f4-tilda-site .booking-link-card p {
   margin-bottom: 4px;
   font-size: 14px;
-}
-
-#f4-tilda-site .site-footer {
+}#f4-tilda-site .site-footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -554,41 +623,27 @@
   padding: 28px clamp(18px, 5vw, 72px);
   border-top: 1px solid var(--line);
   background: #000;
-}
-
-#f4-tilda-site .site-footer img {
+}#f4-tilda-site .site-footer img {
   width: 116px;
-}
-
-#f4-tilda-site .site-footer p {
+}#f4-tilda-site .site-footer p {
   margin: 0;
-}
-
-#f4-tilda-site .site-footer a {
+}#f4-tilda-site .site-footer a {
   color: var(--cyan);
   font-weight: 900;
   text-transform: uppercase;
-}
-
-#f4-tilda-site .lightbox {
+}#f4-tilda-site .lightbox {
   width: min(94vw, 1100px);
   padding: 0;
   border: 1px solid rgba(43, 184, 186, 0.6);
   background: #000;
   box-shadow: var(--shadow);
-}
-
-#f4-tilda-site .lightbox::backdrop {
+}#f4-tilda-site .lightbox::backdrop {
   background: rgba(0, 0, 0, 0.82);
-}
-
-#f4-tilda-site .lightbox img {
+}#f4-tilda-site .lightbox img {
   width: 100%;
   max-height: 86vh;
   object-fit: contain;
-}
-
-#f4-tilda-site .lightbox__close {
+}#f4-tilda-site .lightbox__close {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -603,77 +658,63 @@
   cursor: pointer;
 }
 
-@media (max-width: 980px) {
-  #f4-tilda-site .site-header {
+@media (max-width: 980px) {#f4-tilda-site .site-header {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  #f4-tilda-site .hero,
-  #f4-tilda-site .intro,
-  #f4-tilda-site .zones,
-  #f4-tilda-site .plan,
-  #f4-tilda-site .final-cta {
+  }#f4-tilda-site .hero,
+#f4-tilda-site .intro,
+#f4-tilda-site .zones,
+#f4-tilda-site .plan,
+#f4-tilda-site .final-cta {
     grid-template-columns: 1fr;
-  }
-
-  #f4-tilda-site .hero {
+  }#f4-tilda-site .hero {
     min-height: auto;
-  }
-
-  #f4-tilda-site .hero__panel {
+  }#f4-tilda-site .hero__panel {
     flex-direction: row;
-  }
-
-  #f4-tilda-site .advantage-grid {
+  }#f4-tilda-site .advantage-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
 }
 
-@media (max-width: 680px) {
-  #f4-tilda-site .nav {
-    justify-content: flex-start;
+@media (prefers-reduced-motion: reduce) {#f4-tilda-site *,
+#f4-tilda-site *::before,
+#f4-tilda-site *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }#f4-tilda-site.intro-lock {
+    overflow: auto;
+  }#f4-tilda-site .logo-intro {
+    display: none;
   }
+}
 
-  #f4-tilda-site .nav a {
+@media (max-width: 680px) {#f4-tilda-site .nav {
+    justify-content: flex-start;
+  }#f4-tilda-site .nav a {
     padding: 8px 10px;
     font-size: 11px;
-  }
-
-  #f4-tilda-site .brand img {
+  }#f4-tilda-site .brand img {
     width: 112px;
-  }
-
-  #f4-tilda-site h1 {
+  }#f4-tilda-site h1 {
     font-size: 48px;
     text-shadow: 3px 3px 0 var(--navy), 5px 5px 0 rgba(251, 189, 47, 0.82);
-  }
-
-  #f4-tilda-site .hero__actions,
-  #f4-tilda-site .hero__panel {
+  }#f4-tilda-site .hero__actions,
+#f4-tilda-site .hero__panel {
     align-items: stretch;
     flex-direction: column;
-  }
-
-  #f4-tilda-site .button {
+  }#f4-tilda-site .button {
     width: 100%;
-  }
-
-  #f4-tilda-site .advantage-grid,
-  #f4-tilda-site .gallery__grid {
+  }#f4-tilda-site .advantage-grid,
+#f4-tilda-site .gallery__grid {
     grid-template-columns: 1fr;
-  }
-
-  #f4-tilda-site .gallery__grid button:first-child {
+  }#f4-tilda-site .gallery__grid button:first-child {
     grid-row: auto;
-  }
-
-  #f4-tilda-site .gallery__grid {
+  }#f4-tilda-site .gallery__grid {
     grid-auto-rows: minmax(250px, 64vw);
-  }
-
-  #f4-tilda-site .plan__image img {
+  }#f4-tilda-site .plan__image img {
     min-height: 320px;
   }
 
@@ -681,7 +722,15 @@
 
 </style>
 <div id="f4-tilda-site">
-<div class="scanline" aria-hidden="true"></div>
+<div class="logo-intro" aria-hidden="true">
+      <div class="logo-intro__stage">
+        <div class="logo-intro__pixels"></div>
+        <img class="logo-intro__logo" src="__ASSET_BASE_URL__/logo-f4-brandbook.png" alt="" />
+        <span>loading game zone</span>
+      </div>
+    </div>
+
+    <div class="scanline" aria-hidden="true"></div>
 
     <header class="site-header">
       <a class="brand" href="#f4-top" aria-label="Ф4 Пушкино">
@@ -704,8 +753,8 @@
           <p class="eyebrow">Пушкино · ул. Тургенева, 1</p>
           <h1>Нажми F4. Закрой рутину. Открой игру.</h1>
           <p class="hero__lead">
-            Компьютерный клуб в Пушкино, куда можно прийти после учебы или работы,
-            собрать друзей, запустить любимую игру и на пару часов выпасть из обычного дня.
+            Дома тоже можно играть. Но в Ф4 удобнее: мощное место уже готово,
+            ничего не отвлекает, друзья рядом, а вечер сразу ощущается как событие.
           </p>
           <div class="hero__actions">
             <a class="button button--primary" href="https://f4club.ru/" target="_blank" rel="noopener">Забронировать место</a>
@@ -715,44 +764,36 @@
         <aside class="hero__panel" aria-label="Ключевые особенности">
           <div>
             <strong>PC</strong>
-            <span>игры, командные матчи и тренировки</span>
+            <span>удобная посадка, большой экран и стабильный игровой ритм</span>
           </div>
           <div>
             <strong>TV</strong>
-            <span>зона отдыха для компании и консольных вечеров</span>
+            <span>место перевести дух, дождаться друзей и продолжить вечер</span>
           </div>
           <div>
             <strong>F4</strong>
-            <span>место, где легко начать вечер и не хочется уходить</span>
+            <span>играть проще, собираться приятнее, сидеть комфортнее</span>
           </div>
         </aside>
-      </section>
-
-      <section class="ticker" aria-label="Фирменные преимущества">
-        <span>Киберспорт</span>
-        <span>Lounge</span>
-        <span>Игры с друзьями</span>
-        <span>Турниры</span>
-        <span>Командные игры</span>
-        <span>Отдых после учебы и работы</span>
       </section>
 
       <section class="section intro">
         <div>
           <p class="eyebrow">Знакомься</p>
-          <h2>Ф4 - клуб для тех, кто любит играть не в одиночку.</h2>
+          <h2>Ф4 - когда хочется играть нормально, а не как получится.</h2>
         </div>
         <p>
-          Здесь можно прийти одному, позвать пару друзей или собрать целую команду.
-          Поиграть, посмотреть матч, устроить мини-турнир, отметить день рождения
-          или просто провести вечер в месте, где все вокруг настроено на игру.
+          Здесь не нужно освобождать стол, спорить с домашним интернетом, терпеть
+          неудобное кресло или объяснять всем вокруг, почему тебе нужен тишина на
+          раунд. Пришел, сел, настроился и играешь в месте, где все сделано именно
+          для этого.
         </p>
       </section>
 
       <section class="section advantages" id="f4-advantages">
         <div class="section__head">
           <p class="eyebrow">Почему сюда идут</p>
-          <h2>Все, что нужно для хорошего игрового вечера</h2>
+          <h2>Почему в клубе играть приятнее</h2>
         </div>
 
         <div class="advantage-grid">
@@ -761,23 +802,24 @@
             <h3>Удобно играть</h3>
             <p>
               Просторные места, нормальная посадка, большой экран перед глазами и
-              ничего лишнего на столе. Сел, зашел в аккаунт и сразу в матч.
+              ничего лишнего на столе. Сел, зашел в аккаунт и сразу в матч без
+              домашней суеты вокруг.
             </p>
           </article>
           <article>
             <span class="pixel-icon">02</span>
             <h3>Классная атмосфера</h3>
             <p>
-              Это не просто зал с компьютерами. Здесь темно, ярко, громко ровно
-              настолько, насколько нужно, и сразу понятно: ты пришел играть.
+              В клубе легче поймать настрой: свет, звук, люди рядом, общий азарт.
+              Ты не просто запускаешь игру - ты попадаешь в игровой вечер.
             </p>
           </article>
           <article>
             <span class="pixel-icon">03</span>
-            <h3>Можно прийти компанией</h3>
+            <h3>Компания рядом</h3>
             <p>
-              Пока кто-то доигрывает или опаздывает, остальные не скучают: можно
-              зависнуть на диване, посмотреть игру или обсудить следующий раунд.
+              Не нужно сидеть каждому у себя дома в наушниках. Можно играть рядом,
+              обсуждать раунды сразу и нормально чувствовать команду.
             </p>
           </article>
           <article>
@@ -785,23 +827,23 @@
             <h3>Легко начать</h3>
             <p>
               Пришел, выбрал место, взял напиток, уточнил все у администратора и
-              пошел играть. Без сложных правил и лишней суеты.
+              пошел играть. Без сборов, проводов, обновлений и лишней возни.
             </p>
           </article>
           <article>
             <span class="pixel-icon">05</span>
-            <h3>Для разных поводов</h3>
+            <h3>Повод найдется</h3>
             <p>
-              Обычный вечер после работы, тренировка команды, встреча с друзьями,
-              турнир или день рождения - формат легко подобрать под настроение.
+              Зайти после работы, собраться на вечер с друзьями, потренироваться
+              командой или отметить день рождения - формат легко подстроить под себя.
             </p>
           </article>
           <article>
             <span class="pixel-icon">06</span>
             <h3>Хочется остаться еще</h3>
             <p>
-              Ф4 сделан так, чтобы один матч легко превращался в два, а быстрый
-              заход “на часик” - в полноценный вечер.
+              Когда место удобное, атмосфера держит, а все нужное рядом, один матч
+              легко превращается в два, а “на часик” - в полноценный вечер.
             </p>
           </article>
         </div>
@@ -814,9 +856,9 @@
             <p class="eyebrow">Игровая зона</p>
             <h2>Садись за PC и играй так, как привык</h2>
             <p>
-              Хочешь катнуть пару матчей в соло, собрать дуо или занять ряд с
-              командой - место найдется под любой сценарий. Главное здесь простое:
-              удобно сидеть, удобно общаться, удобно играть.
+              Здесь не нужно подстраиваться под случайные условия. Место уже готово:
+              удобно сидеть, удобно общаться, удобно сосредоточиться и играть дольше,
+              чем обычно получается дома.
             </p>
           </div>
         </div>
@@ -825,12 +867,12 @@
           <article>
             <img src="__ASSET_BASE_URL__/viz-2.jpg" alt="Lounge зона с диванами и игровым экраном" />
             <h3>Отдохнуть между матчами</h3>
-            <p>Диваны, кресла и большой экран для тех, кто хочет перевести дух или подождать друзей.</p>
+            <p>Диваны, кресла и большой экран для паузы между катками или ожидания своей компании.</p>
           </article>
           <article>
             <img src="__ASSET_BASE_URL__/viz-5.jpg" alt="Коридор и входная зона компьютерного клуба Ф4" />
             <h3>Сразу понятно, что ты в Ф4</h3>
-            <p>На входе встречает яркая стойка, напитки рядом, а дальше - клубная атмосфера и игровые зоны.</p>
+            <p>На входе встречает яркая стойка, напитки рядом, а дальше - атмосфера, в которой легко включиться в игру.</p>
           </article>
         </div>
       </section>
@@ -840,7 +882,7 @@
           <p class="eyebrow">Что внутри</p>
           <h2>Все рядом: PC, отдых и напитки</h2>
           <ul class="check-list">
-            <li>Можно играть одному, вдвоем или прийти большой компанией.</li>
+            <li>Не нужно готовить рабочее место: пришел и сразу садишься играть.</li>
             <li>Есть отдельное место, где удобно отдохнуть и дождаться друзей.</li>
             <li>Администратор рядом: поможет с бронью, местом и любыми вопросами.</li>
             <li>Напитки под рукой, чтобы не выпадать из вечера надолго.</li>
@@ -882,14 +924,14 @@
           <p class="eyebrow">Готов играть?</p>
           <h2>Забронируй место и приходи в Ф4</h2>
           <p>
-            Выбери удобное время, приходи один или с друзьями и проведи вечер за
-            любимыми играми. Все оформление брони - по кнопке ниже.
+            Выбери удобное время, приходи один или с друзьями и проведи вечер там,
+            где играть комфортнее, чем дома. Все оформление брони - по кнопке ниже.
           </p>
         </div>
         <div class="booking-link-card">
           <span>быстрая бронь</span>
           <strong>Выбери время</strong>
-          <p>Откроется страница, где можно оформить визит и спокойно собрать компанию.</p>
+          <p>Откроется страница, где можно выбрать время, место и спокойно собрать компанию.</p>
           <a class="button button--primary" href="https://f4club.ru/" target="_blank" rel="noopener">
             Забронировать
           </a>
@@ -907,35 +949,112 @@
       <button class="lightbox__close" type="button" aria-label="Закрыть">×</button>
       <img alt="" />
     </dialog>
-
 </div>
 <script>
-(() => {
+(function () {
   const root = document.getElementById("f4-tilda-site");
-  if (!root) return;
-  const dialog = root.querySelector(".lightbox");
+    const intro = root?.querySelector(".logo-intro");
+  const pixelWrap = root?.querySelector(".logo-intro__pixels");
+  const motionAllowed = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  
+  if (motionAllowed && intro && pixelWrap) {
+    root.classList.add("intro-lock");
+  
+    const colors = ["#2bb8ba", "#fbbd2f", "#ffffff", "#1b2442"];
+    const pixelCount = 70;
+  
+    for (let index = 0; index < pixelCount; index += 1) {
+      const pixel = document.createElement("span");
+      const angle = (Math.PI * 2 * index) / pixelCount;
+      const orbit = 150 + (index % 10) * 12;
+      const targetX = -154 + (index % 10) * 34;
+      const targetY = -94 + Math.floor(index / 10) * 29;
+  
+      pixel.style.setProperty("--from-x", `${Math.cos(angle) * orbit}px`);
+      pixel.style.setProperty("--from-y", `${Math.sin(angle) * orbit}px`);
+      pixel.style.setProperty("--to-x", `${targetX}px`);
+      pixel.style.setProperty("--to-y", `${targetY}px`);
+      pixel.style.setProperty("--delay", `${80 + index * 12}ms`);
+      pixel.style.setProperty("--size", `${8 + (index % 3) * 3}px`);
+      pixel.style.setProperty("--color", colors[index % colors.length]);
+      pixelWrap.append(pixel);
+    }
+  
+    window.setTimeout(() => {
+      const introLogo = intro.querySelector(".logo-intro__logo");
+      const headerLogo = root.querySelector(".brand img");
+  
+      if (!introLogo || !headerLogo) {
+        intro.classList.add("logo-intro--dock");
+        return;
+      }
+  
+      const introRect = introLogo.getBoundingClientRect();
+      const headerRect = headerLogo.getBoundingClientRect();
+      const introCenterX = introRect.left + introRect.width / 2;
+      const introCenterY = introRect.top + introRect.height / 2;
+      const headerCenterX = headerRect.left + headerRect.width / 2;
+      const headerCenterY = headerRect.top + headerRect.height / 2;
+      const scale = headerRect.width / introRect.width;
+  
+      introLogo.style.setProperty("--dock-x", `${Math.round(headerCenterX - introCenterX)}px`);
+      introLogo.style.setProperty("--dock-y", `${Math.round(headerCenterY - introCenterY)}px`);
+      introLogo.style.setProperty("--dock-scale", scale.toFixed(3));
+      intro.classList.add("logo-intro--dock");
+    }, 1650);
+  
+    window.setTimeout(() => {
+      root.classList.remove("intro-lock");
+      intro.remove();
+    }, 3850);
+  } else {
+    intro?.remove();
+  }
+  
+  root?.classList.add("has-motion");
+  
+  const revealItems = root?.querySelectorAll(
+    ".section, .advantage-grid article, .zone-card, .zone-stack article, .plan, .gallery__grid button, .final-cta",
+  );
+  
+  if (motionAllowed && "IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 },
+    );
+  
+    revealItems.forEach((item) => revealObserver.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  }
+  
+  const dialog = root?.querySelector(".lightbox");
   const dialogImage = dialog?.querySelector("img");
   const closeButton = dialog?.querySelector(".lightbox__close");
-
-  root.querySelectorAll("[data-lightbox]").forEach((button) => {
+  
+  root?.querySelectorAll("[data-lightbox]").forEach((button) => {
     button.addEventListener("click", () => {
       if (!dialog || !dialogImage) return;
       dialogImage.src = button.dataset.lightbox || "";
       dialogImage.alt = button.querySelector("img")?.alt || "Изображение Ф4";
-      if (typeof dialog.showModal === "function") {
-        dialog.showModal();
-      } else {
-        dialog.setAttribute("open", "");
-      }
+      dialog.showModal();
     });
   });
-
-  closeButton?.addEventListener("click", () => dialog?.close ? dialog.close() : dialog?.removeAttribute("open"));
-
+  
+  closeButton?.addEventListener("click", () => dialog?.close());
+  
   dialog?.addEventListener("click", (event) => {
     if (event.target === dialog) {
-      dialog.close ? dialog.close() : dialog.removeAttribute("open");
+      dialog.close();
     }
   });
+  
 })();
 </script>
